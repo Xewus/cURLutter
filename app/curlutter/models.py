@@ -1,5 +1,4 @@
 from django.db import models
-from django.core.validators import URLValidator
 
 from main import settings
 
@@ -7,8 +6,7 @@ from main import settings
 class Link(models.Model):
     original = models.URLField(
         verbose_name='Оригинальная ссылка',
-        null=False,
-        validators=(URLValidator(),)
+        null=False
     )
     short = models.CharField(
         verbose_name='Укороченная ссылка',

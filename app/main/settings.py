@@ -1,6 +1,9 @@
 from pathlib import Path
 
 MAX_LEN_SHORT_URL = 10
+UTH_USER_MODEL = 'users.MyUser'
+ESSION_ENGINE = 'user_sessions.backends_db'
+OGIN_REDIRECT_URL = '/help/'
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -33,12 +36,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'main.urls'
-
-AUTH_USER_MODEL = 'users.MyUser'
-
-SESSION_ENGINE = 'user_sessions.backends_db'
-
-LOGIN_REDIRECT_URL = '/help/'
 
 TEMPLATES = [
     {
