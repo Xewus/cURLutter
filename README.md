@@ -32,7 +32,7 @@ python app/manage.py runserver
 ```
 Дальше по адресу:
 
-<host>:8000/link/help/
+<hоst>:8000/link/help/
 ```
 ***
 
