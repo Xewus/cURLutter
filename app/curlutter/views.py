@@ -1,12 +1,16 @@
 from datetime import datetime
 from http import HTTPStatus
 
+from django.core.validators import URLValidator
+from django.core.exceptions import ValidationError
 from django.http import (HttpRequest, HttpResponse, HttpResponseBadRequest,
                          HttpResponseNotFound)
 from django.shortcuts import redirect
 from django.views.decorators.http import require_GET
 
 from curlutter.models import Link
+
+url_validator = URLValidator()
 
 
 @require_GET
@@ -15,7 +19,7 @@ def help(request: HttpRequest) -> HttpResponse:
     """
     return HttpResponse(f"""
     Чтоб создать короткую ссылку, отправьте "POST"-запрос на ресурс
-    {request.META['SERVER_NAME']}/link/add-link/?short=<>&original=<>&end-time=<>
+    {request.build_absolute_uri()}/link/add-link/?short=<>&original=<>&end-time=<>
     Где:
     short - Псевдоним (короткая ссыка).
     original - Оригинальная длинная ссылка.
@@ -68,6 +72,11 @@ def add_link(request: HttpRequest) -> HttpResponse:
     original = request.GET.get('original')
     if not original:
         return HttpResponseBadRequest('Не передан параметр `original`')
+
+    try:
+        url_validator(original)
+    except ValidationError:
+        return HttpResponseBadRequest('Некорректный оригинальный адрес')
 
     end_time = request.GET.get('end-time')
     if end_time:
