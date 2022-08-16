@@ -20,9 +20,6 @@ class MyUser(AbstractUser):
     def __str__(self):
         return f'{self.username}: {self.email}'
 
-    def password_change(self, request, extra_context=None):
-        raise ValueError
-
 
 class IP(models.Model):
     ip = models.GenericIPAddressField(
