@@ -25,5 +25,4 @@ class SessionStore(DBStore):
     ) -> AbstractBaseSession:
         session = super().create_model_instance(data)
         session.user_id = data.get('_auth_user_id')
-        print('ssss', session)
         return session
