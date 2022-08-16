@@ -14,7 +14,7 @@ https://github.com/Xewus/cURLutter.git
 ```
 python3.10 -m venv venv && . venv/bin/activate
 ```
-Скачать Django:
+Скачать Django (я в курсе про requriements.txt):
 ```
 pip install django
 ```
