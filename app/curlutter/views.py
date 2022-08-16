@@ -18,7 +18,7 @@ def help(request: HttpRequest) -> HttpResponse:
     """Выводит инструкцию по использованию.
     """
     return HttpResponse(f"""
-    Чтоб создать короткую ссылку, отправьте "POST"-запрос на ресурс
+    Чтоб создать короткую ссылку, отправьте "GET"-запрос на ресурс
     {request.build_absolute_uri()}/link/add-link/?short=<>&original=<>&end-time=<>
     Где:
     short - Псевдоним (короткая ссыка).
